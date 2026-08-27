@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Malviya - Portfolio</title>
+        <title>Harsh Malviya — Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Harsh Malviya, a Full Stack Developer building scalable, intelligent and immersive digital experiences.">
+    <meta property="og:title" content="Harsh Malviya — Full Stack Developer">
+    <meta property="og:description" content="Portfolio of Harsh Malviya, building modern scalable web applications.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Harsh Malviya — Full Stack Developer">
+    <meta name="twitter:description" content="Portfolio of Harsh Malviya, building modern scalable web applications.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -804,6 +812,137 @@
             animation: spin 1s linear infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+    
+        /* --- Modal CSS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        .modal-content {
+            background: var(--bg-dark);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(50px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .modal-close:hover { background: var(--primary); }
+        .modal-body h3 { font-size: 2.5rem; margin: 0 0 1rem 0; color: var(--primary); }
+        .modal-body h4 { font-size: 1.2rem; margin: 2rem 0 1rem 0; color: white; }
+        .modal-body p { color: var(--text-muted); line-height: 1.6; }
+        .modal-body ul { color: var(--text-muted); line-height: 1.6; padding-left: 1.5rem; }
+        .modal-body .tech-stack { margin-bottom: 2rem; }
+        .modal-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .modal-links .btn-primary { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+        .modal-links .btn-outline { 
+            padding: 0.6rem 1.2rem; font-size: 0.85rem; border: 1px solid var(--glass-border); 
+            border-radius: 2rem; color: white; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .modal-links .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- Footer CSS --- */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 4%;
+            text-align: center;
+            background: rgba(5,5,5,0.8);
+        }
+        footer h3 { margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        footer p { color: var(--text-muted); margin: 0 0 1.5rem 0; font-size: 0.9rem; }
+        .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .footer-social a { color: white; opacity: 0.6; transition: all 0.3s; }
+        .footer-social a:hover { opacity: 1; color: var(--primary); transform: translateY(-3px); }
+        .copyright { font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; }
+
+        /* --- Status Badge --- */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 30px;
+            color: #4CAF50;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        .status-dot { width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; box-shadow: 0 0 8px #4CAF50; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* --- Featured Project --- */
+        .featured-project {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: linear-gradient(145deg, rgba(25,25,25,0.6) 0%, rgba(15,15,15,0.8) 100%);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(255, 94, 58, 0.15);
+            align-items: center;
+        }
+        .featured-project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 94, 58, 0.2);
+            border-color: #ff7252;
+        }
+        .featured-img { width: 100%; height: 300px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; border: 1px solid var(--glass-border); position: relative; }
+        .featured-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(255,94,58,0.2), transparent); opacity: 0.5; }
+        .featured-img i { font-size: 4rem; color: var(--primary); opacity: 0.8; width: 64px; height: 64px; }
+        .featured-content h3 { font-size: 2.5rem; margin: 0 0 1rem 0; background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .featured-badge { display: inline-block; padding: 0.3rem 0.8rem; background: var(--primary); color: white; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px;}
+        
+        @media (max-width: 992px) {
+            .featured-project { grid-template-columns: 1fr; }
+            .featured-img { height: 250px; }
+        }
+        
+        /* Hero Buttons */
+        .hero-buttons { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 2rem; }
+        .btn-secondary { background: transparent; border: 1px solid var(--glass-border); color: white; padding: 0.8rem 1.8rem; border-radius: 2rem; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); transform: scale(1.05); }
+        
+        /* Achievements */
+        .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .achievement-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 16px; display: flex; align-items: flex-start; gap: 1rem; transition: all 0.3s; }
+        .achievement-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        .achievement-icon { width: 40px; height: 40px; background: rgba(255,94,58,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+        .achievement-info h5 { margin: 0 0 0.3rem 0; font-size: 1rem; font-weight: 600; }
+        .achievement-info p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+
     </style>
 </head>
 <body>
@@ -827,11 +966,12 @@
         <nav id="navbar">
             <a href="#" class="logo custom-hover">Harsh Malviya.</a>
             <div class="nav-links">
-                <a href="#home" class="custom-hover">Home</a>
+                <a href="#home" class="custom-hover active">Home</a>
                 <a href="#about" class="custom-hover">About</a>
                 <a href="#skills" class="custom-hover">Skills</a>
                 <a href="#projects" class="custom-hover">Projects</a>
                 <a href="#experience" class="custom-hover">Experience</a>
+                <a href="#achievements" class="custom-hover">Achievements</a>
                 <a href="#contact" class="custom-hover">Contact</a>
             </div>
             <a href="#contact" class="btn-primary custom-hover">Get in touch <i data-lucide="arrow-right"></i></a>
@@ -847,10 +987,16 @@
                         <span class="line"><span class="word">Developer.</span></span>
                     </h1>
                 </div>
-                <div class="hero-desc gsap-fade">
-                    <h3>Building modern<br>web applications.</h3>
-                    <p>Motivated MCA student passionate about Full Stack Development. Creating premium digital experiences.</p>
-                    <a href="resume.png" target="_blank" class="btn-primary custom-hover" style="margin-top: 1.5rem; display: inline-flex; width: max-content;">View Resume <i data-lucide="file-text"></i></a>
+                <div class="hero-desc gsap-fade" style="max-width: 500px;">
+                    <div class="status-badge"><div class="status-dot"></div> Available for Opportunities</div>
+                    <h3>Building scalable, intelligent and immersive digital experiences.</h3>
+                    <p>Passionate Full Stack Developer with expertise in modern web technologies. Creating premium digital experiences that solve real-world problems.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn-primary custom-hover">View Projects <i data-lucide="arrow-right"></i></a>
+                        <a href="resume.png" target="_blank" class="btn-secondary custom-hover">Resume <i data-lucide="file-text"></i></a>
+                        <a href="https://github.com/harshmalviya965-lab" target="_blank" class="custom-hover" style="color: white; opacity: 0.7; margin-left: 0.5rem;"><i data-lucide="github"></i></a>
+                        <a href="https://www.linkedin.com/in/harshmalviya-dev" target="_blank" class="custom-hover" style="color: white; opacity: 0.7;"><i data-lucide="linkedin"></i></a>
+                    </div>
                 </div>
             </div>
             
@@ -867,19 +1013,19 @@
                 <div class="about-text gsap-slide-up">
                     <div class="section-header">About <strong>Me</strong></div>
                     <h3>I'm Harsh Malviya<br>Aspiring Full Stack Developer.</h3>
-                    <p>Motivated MCA student and BCA graduate with strong knowledge of HTML, CSS, JavaScript, Java and MySQL. Passionate about Full Stack Development and building modern, responsive web applications. Eager to contribute to real-world projects and continuously learn new technologies.</p>
+                    <p>Motivated Full Stack Developer (MCA & BCA graduate) specializing in modern web development, database architectures, and AI integration. Passionate about solving complex problems and building robust, scalable real-world products. Continuously pushing the boundaries of interactive digital experiences.</p>
                     
                     <div class="stats-row">
                         <div class="stat-item">
-                            <h4 class="counter" data-target="2">0</h4>
+                            <h4 class="counter" data-target="2">2</h4>
                             <p>Degrees (BCA, MCA)</p>
                         </div>
                         <div class="stat-item">
-                            <h4 class="counter" data-target="10">0</h4>
+                            <h4 class="counter" data-target="10">10</h4>
                             <p>Projects</p>
                         </div>
                         <div class="stat-item">
-                            <h4 class="counter" data-target="3">0</h4>
+                            <h4 class="counter" data-target="4">4</h4>
                             <p>Certifications</p>
                         </div>
                     </div>
@@ -893,10 +1039,10 @@
                 <div class="skill-category gsap-slide-up">
                     <h4>Frontend Development</h4>
                     <div class="skill-tags">
+                        <div class="skill-tag custom-hover"><i data-lucide="blocks"></i> React</div>
+                        <div class="skill-tag custom-hover"><i data-lucide="file-code-2"></i> JavaScript (ES6+)</div>
                         <div class="skill-tag custom-hover"><i data-lucide="layout"></i> HTML5</div>
                         <div class="skill-tag custom-hover"><i data-lucide="palette"></i> CSS3</div>
-                        <div class="skill-tag custom-hover"><i data-lucide="file-code-2"></i> JavaScript (ES6+)</div>
-                        <div class="skill-tag custom-hover"><i data-lucide="blocks"></i> React Basics</div>
                     </div>
                 </div>
                 <div class="skill-category gsap-slide-up" style="transition-delay: 0.1s">
@@ -908,12 +1054,12 @@
                     </div>
                 </div>
                 <div class="skill-category gsap-slide-up" style="transition-delay: 0.2s">
-                    <h4>Tools & Other</h4>
+                    <h4>Tools & AI Technologies</h4>
                     <div class="skill-tags">
                         <div class="skill-tag custom-hover"><i data-lucide="git-branch"></i> Git & GitHub</div>
+                        <div class="skill-tag custom-hover"><i data-lucide="cpu"></i> AI Integration</div>
                         <div class="skill-tag custom-hover"><i data-lucide="monitor"></i> Responsive Design</div>
-                        <div class="skill-tag custom-hover"><i data-lucide="cpu"></i> AI Tools</div>
-                        <div class="skill-tag custom-hover"><i data-lucide="wordpress"></i> WordPress</div>
+                        <div class="skill-tag custom-hover"><i data-lucide="layout-template"></i> UI/UX Prototyping</div>
                     </div>
                 </div>
             </div>
@@ -922,8 +1068,27 @@
         <section id="projects">
             <div class="section-header gsap-slide-up">Selected <strong>Projects</strong></div>
             <div class="projects-grid">
-                <div class="project-card gsap-slide-up" data-hover="view">
-                    <div class="project-num">01</div>
+                <!-- Featured Project -->
+                <div class="project-card featured-project gsap-slide-up" data-hover="CASE STUDY" onclick="openModal('globetrotter')">
+                    <div class="featured-img">
+                        <img src="pic/globetrotter.jpg" alt="GlobeTrotter App" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-badge">Featured App</span>
+                        <h3>GlobeTrotter</h3>
+                        <p>A premium travel-tech platform enabling multi-city trip planning, interactive itineraries, AI travel assistance, and public trip sharing.</p>
+                        <div class="tech-stack" style="margin-bottom: 1.5rem;">
+                            <span>React</span>
+                            <span>JavaScript</span>
+                            <span>Firebase</span>
+                            <span>AI Integration</span>
+                        </div>
+                        <div class="btn-primary" style="display:inline-flex; padding: 0.6rem 1.5rem;">View Case Study <i data-lucide="arrow-up-right"></i></div>
+                    </div>
+                </div>
+
+                <div class="project-card gsap-slide-up" data-hover="CASE STUDY" onclick="openModal('medical')">
+                    <div class="project-num">02</div>
                     <h3>Medical AI Assistant</h3>
                     <p>Interactive chatbot for symptom analysis and health guidance with voice input integration.</p>
                     <div class="tech-stack">
@@ -933,8 +1098,8 @@
                         <span>AI API</span>
                     </div>
                 </div>
-                <div class="project-card gsap-slide-up" style="transition-delay: 0.1s" data-hover="view">
-                    <div class="project-num">02</div>
+                <div class="project-card gsap-slide-up" style="transition-delay: 0.1s" data-hover="CASE STUDY" onclick="openModal('food')">
+                    <div class="project-num">03</div>
                     <h3>Food Delivery System</h3>
                     <p>A comprehensive food ordering platform with cart management, order tracking, and dynamic categories.</p>
                     <div class="tech-stack">
@@ -969,8 +1134,42 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Certifications</div>
-                        <h4>Professional Development</h4>
-                        <p>Python Course (Infosys Springboard), Web App Development using AI Tools, Oracle APEX Workshop, SOC & NOC Operations.</p>
+                        <h4>Project Experience</h4>
+                        <p>Developed full-stack applications integrating AI APIs, automated databases, and responsive frontends.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <div class="section-header gsap-slide-up">Professional <strong>Achievements</strong></div>
+            <div class="achievements-grid">
+                <div class="achievement-card gsap-slide-up">
+                    <div class="achievement-icon"><i data-lucide="award"></i></div>
+                    <div class="achievement-info">
+                        <h5>Python Course</h5>
+                        <p>Infosys Springboard</p>
+                    </div>
+                </div>
+                <div class="achievement-card gsap-slide-up" style="transition-delay: 0.1s">
+                    <div class="achievement-icon"><i data-lucide="code"></i></div>
+                    <div class="achievement-info">
+                        <h5>Web App Development</h5>
+                        <p>using AI Tools</p>
+                    </div>
+                </div>
+                <div class="achievement-card gsap-slide-up" style="transition-delay: 0.2s">
+                    <div class="achievement-icon"><i data-lucide="database"></i></div>
+                    <div class="achievement-info">
+                        <h5>Oracle APEX</h5>
+                        <p>Workshop Certification</p>
+                    </div>
+                </div>
+                <div class="achievement-card gsap-slide-up" style="transition-delay: 0.3s">
+                    <div class="achievement-icon"><i data-lucide="shield-check"></i></div>
+                    <div class="achievement-info">
+                        <h5>SOC & NOC Operations</h5>
+                        <p>Security & Network Operations</p>
                     </div>
                 </div>
             </div>
@@ -1057,11 +1256,147 @@
         </section>
         
         <div class="scroll-spacer"></div>
+
+        <!-- Footer -->
+        <footer>
+            <h3>Harsh Malviya.</h3>
+            <p>Full Stack Developer</p>
+            <div class="footer-social">
+                <a href="https://github.com/harshmalviya965-lab" target="_blank"><i data-lucide="github"></i></a>
+                <a href="https://www.linkedin.com/in/harshmalviya-dev" target="_blank"><i data-lucide="linkedin"></i></a>
+                <a href="mailto:harshmalviya965@gmail.com"><i data-lucide="mail"></i></a>
+            </div>
+            <div class="copyright">© 2026 Harsh Malviya. All rights reserved.</div>
+        </footer>
+    </div> <!-- end content-wrapper -->
+
+    <!-- Case Study Modal -->
+    <div class="modal-overlay" id="project-modal" onclick="if(event.target===this) closeModal()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Dynamic Content injected via JS -->
+            </div>
+        </div>
     </div>
 
     <script>
         // Initialize Icons
         lucide.createIcons();
+
+        
+        // --- Navbar Active Section Update ---
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll(".nav-links a");
+        
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((a) => {
+                a.classList.remove("active");
+                if (a.getAttribute("href") === "#" + current) {
+                    a.classList.add("active");
+                }
+            });
+        });
+
+        // --- Project Modals ---
+        const projectData = {
+            globetrotter: {
+                title: "GlobeTrotter",
+                tech: ["React", "JavaScript", "Firebase", "AI Integration"],
+                problem: "Travel planning is often fragmented across multiple tabs and apps, making it difficult to coordinate multi-city itineraries and budgets.",
+                solution: "A unified premium travel-tech platform that centralizes interactive itineraries, city discovery, budget tracking, and calendar views in one seamless interface.",
+                features: [
+                    "Multi-city trip planning & interactive itinerary timeline",
+                    "City/activity discovery with smart recommendations",
+                    "Budget planning and expense tracking",
+                    "AI travel assistance for instant suggestions",
+                    "Public trip sharing capabilities"
+                ],
+                architecture: "Built with a responsive React frontend, styled with modern CSS modules, and powered by Firebase for real-time data sync and authentication.",
+                repo: "https://github.com/harshmalviya965-lab",
+                demo: "#"
+            },
+            medical: {
+                title: "Medical AI Assistant",
+                tech: ["HTML/CSS", "JavaScript", "Firebase", "AI API"],
+                problem: "Patients often struggle to understand initial symptoms before consulting a doctor, needing a quick and reliable pre-screening tool.",
+                solution: "An interactive AI chatbot that provides immediate symptom analysis and basic health guidance, integrated with voice input for accessibility.",
+                features: [
+                    "Real-time symptom analysis chatbot",
+                    "Voice input integration for hands-free use",
+                    "Secure patient data handling via Firebase",
+                    "Responsive and accessible user interface"
+                ],
+                architecture: "Vanilla JS frontend interacting with a secure AI API backend, utilizing Firebase for user session management.",
+                repo: "https://github.com/harshmalviya965-lab",
+                demo: "#"
+            },
+            food: {
+                title: "Food Delivery System",
+                tech: ["WordPress", "HTML/CSS", "JavaScript", "PHP"],
+                problem: "Local restaurants need an affordable, easy-to-manage online ordering system without steep commission fees.",
+                solution: "A comprehensive food ordering platform built on WordPress, featuring cart management, order tracking, and dynamic product categories.",
+                features: [
+                    "Dynamic menu and category management",
+                    "Real-time cart and checkout flow",
+                    "Order tracking dashboard for customers",
+                    "Admin panel for restaurant owners"
+                ],
+                architecture: "Custom WordPress theme and plugins developed using PHP and JS, styled with custom CSS for a modern look.",
+                repo: "https://github.com/harshmalviya965-lab",
+                demo: "#"
+            }
+        };
+
+        const modalOverlay = document.getElementById("project-modal");
+        const modalBody = document.getElementById("modal-body-content");
+
+        function openModal(id) {
+            const data = projectData[id];
+            if(!data) return;
+            
+            const techHTML = data.tech.map(t => `<span>${t}</span>`).join('');
+            const featuresHTML = data.features.map(f => `<li>${f}</li>`).join('');
+            
+            modalBody.innerHTML = `
+                <h3>${data.title}</h3>
+                <div class="tech-stack">${techHTML}</div>
+                
+                <h4>The Problem</h4>
+                <p>${data.problem}</p>
+                
+                <h4>The Solution</h4>
+                <p>${data.solution}</p>
+                
+                <h4>Key Features</h4>
+                <ul>${featuresHTML}</ul>
+                
+                <h4>Architecture</h4>
+                <p>${data.architecture}</p>
+                
+                <div class="modal-links">
+                    <a href="${data.demo}" class="btn-primary custom-hover" target="_blank">Live Demo <i data-lucide="external-link"></i></a>
+                    <a href="${data.repo}" class="btn-outline custom-hover" target="_blank">GitHub <i data-lucide="github"></i></a>
+                </div>
+            `;
+            
+            lucide.createIcons(); // Re-init icons in modal
+            modalOverlay.classList.add("active");
+            lenis.stop(); // Pause scrolling
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove("active");
+            lenis.start(); // Resume scrolling
+        }
 
         // Register GSAP Plugins
         gsap.registerPlugin(ScrollTrigger);
